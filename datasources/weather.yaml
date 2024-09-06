@@ -22,4 +22,4 @@ datasources:
       oauthPassThru: false
     readOnly: false
     secureJsonData:
-      apiKeyValue: "25a0734bd9eb17d03b76077b5e21c09b"
+      apiKeyValue: $WEATHER_API_KEY
