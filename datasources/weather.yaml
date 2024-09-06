@@ -1,0 +1,25 @@
+apiVersion: 1
+
+datasources:
+  - id: 22
+    uid: "bb1b1082-6dee-4d90-9ec8-1cf29417935f"
+    orgId: 1
+    name: "Weather"
+    type: "yesoreyeram-infinity-datasource"
+    url: "__IGNORE_URL__"
+    basicAuth: false
+    basicAuthUser: ""
+    isDefault: false
+    jsonData:
+      allowedHosts:
+        - "https://api.openweathermap.org/data/2.5/weather"
+      apiKeyKey: "appid"
+      apiKeyType: "query"
+      auth_method: "apiKey"
+      customHealthCheckEnabled: true
+      customHealthCheckUrl: "https://api.openweathermap.org/data/2.5/weather?lat=35.4500961303711&lon=126.42821502685547"
+      global_queries: []
+      oauthPassThru: false
+    readOnly: false
+    secureJsonData:
+      apiKeyValue: "25a0734bd9eb17d03b76077b5e21c09b"

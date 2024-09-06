@@ -1,4 +1,4 @@
-version: "3"
+# version: "3"
 
 services:
   grafana:
@@ -8,8 +8,17 @@ services:
     environment:
       - GF_INSTALL_PLUGINS=marcusolsson-dynamictext-panel,volkovlabs-variable-panel,yesoreyeram-infinity-datasource,marcusolsson-json-datasource,grafana-clock-panel
     ports:
-      - "3000:3000"
+      - "3001:3001"
     volumes:
-      - "grafana_storage:/var/lib/grafana"
+      - "storage:/var/lib/grafana"
+      - "./datasources:/etc/grafana/provisioning/datasources/"
+      - "./dashboards:/etc/grafana/provisioning/dashboards/"
+      # Setting Change
+      - ./grafana.ini:/etc/grafana/grafana.ini
+      # Icon Change
+      - ./img/grafana_icon.svg:/usr/share/grafana/public/img/grafana_icon.svg:ro
+      # Favicon Change
+      - ./img/fav32.png:/usr/share/grafana/public/img/fav32.png:ro
+
 volumes:
-  grafana_storage: {}
+  storage: {}
