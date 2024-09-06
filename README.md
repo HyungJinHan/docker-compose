@@ -25,6 +25,7 @@ docker compose -f /path/to/docker-compose.yaml up -d
   - 아래와 같이 해당 Data Source가 프로비저닝 스크립트를 지원해야 사용 가능 (추측)
 
   ![infinity][infinity]
+
   _Infinity Data Source Main 페이지_
 
   - 위의 이미지에서 `Privisioning Script` 클릭 시, 아래와 같은 코드 생성
@@ -68,6 +69,7 @@ docker compose -f /path/to/docker-compose.yaml up -d
 > Dashboards 프로비저닝 파일
 
 ![export][export]
+
 _해당 대시보드에서 `Share` -> `Export` (`Export for sharing externally` : 체크 필요)_
 
 - 실제 출력되는 대시보드로, 해당 디렉토리에 저장해야 하는 대시보드 프로비저닝 파일 형식은 `.json`
