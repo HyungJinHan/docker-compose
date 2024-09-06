@@ -14,7 +14,7 @@ services:
       - "./datasources:/etc/grafana/provisioning/datasources/"
       - "./dashboards:/etc/grafana/provisioning/dashboards/"
       # Setting Change
-      - ./grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana.ini:/etc/grafana/grafana.ini:ro
       # Icon Change
       - ./img/grafana_icon.svg:/usr/share/grafana/public/img/grafana_icon.svg:ro
       # Favicon Change
