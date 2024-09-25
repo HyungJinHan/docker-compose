@@ -1,0 +1,22 @@
+apiVersion: 1
+
+datasources:
+  - id: 4
+    uid: "ddytvfy4bnaiof"
+    orgId: 1
+    name: "auth-data-general"
+    type: "yesoreyeram-infinity-datasource"
+    url: "https://auth.odn.us/data"
+    basicAuth: false
+    basicAuthUser: ""
+    isDefault: true
+    jsonData:
+      allowedHosts:
+        - "https://auth.odn.us"
+      auth_method: "oauthPassThru"
+      customHealthCheckEnabled: false
+      customHealthCheckUrl: "https://auth.odn.us/data/health"
+      global_queries: []
+      oauthPassThru: true
+    readOnly: true
+    apiVersion: ""

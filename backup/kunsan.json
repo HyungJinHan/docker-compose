@@ -187,18 +187,9 @@
           "hide": false,
           "method": "GET",
           "params": [
-            [
-              "b_time",
-              "${__from}"
-            ],
-            [
-              "a_time",
-              "${__to}"
-            ],
-            [
-              "size",
-              "9999"
-            ]
+            ["b_time", "${__from}"],
+            ["a_time", "${__to}"],
+            ["size", "9999"]
           ],
           "queryParams": "",
           "refId": "A",
@@ -538,9 +529,7 @@
           "countRows": false,
           "enablePagination": false,
           "fields": "",
-          "reducer": [
-            "sum"
-          ],
+          "reducer": ["sum"],
           "show": false
         },
         "showHeader": true
@@ -603,18 +592,9 @@
           "hide": false,
           "method": "GET",
           "params": [
-            [
-              "appid",
-              "25a0734bd9eb17d03b76077b5e21c09b"
-            ],
-            [
-              "lat",
-              "${Lat}"
-            ],
-            [
-              "lon",
-              "${Lon}"
-            ]
+            ["appid", "25a0734bd9eb17d03b76077b5e21c09b"],
+            ["lat", "${Lat}"],
+            ["lon", "${Lon}"]
           ],
           "queryParams": "",
           "refId": "A",
@@ -661,10 +641,7 @@
           "format": "auto",
           "language": "html"
         },
-        "editors": [
-          "styles",
-          "afterRender"
-        ],
+        "editors": ["styles", "afterRender"],
         "externalScripts": [
           {
             "id": "e9b0a66d-ff42-4f92-88f9-019c753fc6fb",
@@ -716,18 +693,9 @@
           "hide": false,
           "method": "GET",
           "params": [
-            [
-              "appid",
-              "25a0734bd9eb17d03b76077b5e21c09b"
-            ],
-            [
-              "lat",
-              "${Lat}"
-            ],
-            [
-              "lon",
-              "${Lon}"
-            ]
+            ["appid", "25a0734bd9eb17d03b76077b5e21c09b"],
+            ["lat", "${Lat}"],
+            ["lon", "${Lon}"]
           ],
           "queryParams": "",
           "refId": "B",
@@ -787,9 +755,7 @@
           "countRows": false,
           "enablePagination": true,
           "fields": "",
-          "reducer": [
-            "sum"
-          ],
+          "reducer": ["sum"],
           "show": false
         },
         "showHeader": true
@@ -821,18 +787,9 @@
           ],
           "method": "GET",
           "params": [
-            [
-              "size",
-              "9999"
-            ],
-            [
-              "b_time",
-              "${__from}"
-            ],
-            [
-              "a_time",
-              "${__to}"
-            ]
+            ["size", "9999"],
+            ["b_time", "${__from}"],
+            ["a_time", "${__to}"]
           ],
           "queryParams": "",
           "refId": "${Sensor} - ${Type}",
@@ -968,7 +925,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "군산대 센서 대시보드",
+  "title": "군산대 센서 대시보드 프로비저닝",
   "uid": "d8aa395d-fdbb-4bcc-9c84-bf938f2361db",
   "version": 33,
   "weekStart": ""

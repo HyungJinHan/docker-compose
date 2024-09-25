@@ -14,6 +14,7 @@ services:
       - "storage:/var/lib/grafana"
       - "./datasources:/etc/grafana/provisioning/datasources/"
       - "./dashboards:/etc/grafana/provisioning/dashboards/"
+      - "./dashboards:/var/lib/grafana/dashboards"
       # Setting Change
       - ./grafana.ini:/etc/grafana/grafana.ini:ro
       # Icon Change

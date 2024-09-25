@@ -1,0 +1,29 @@
+apiVersion: 1
+
+datasources:
+  - id: 3
+    uid: "cdytp6cxo0mwwf"
+    orgId: 1
+    name: "auth-data-admin"
+    type: "yesoreyeram-infinity-datasource"
+    url: "https://auth.odn.us/data/admin"
+    basicAuth: false
+    basicAuthUser: ""
+    isDefault: false
+    jsonData:
+      allowedHosts:
+        - "http://localhost:3001"
+        - "http://localhost:3000"
+        - "https://auth.odn.us"
+      auth_method: "oauthPassThru"
+      customHealthCheckEnabled: true
+      customHealthCheckUrl: "https://auth.odn.us/data/admin/devices/yeosu01/sensors/temperatures?size=1"
+      global_queries: []
+      oauth2:
+        authStyle: 0
+        oauth2_type: "client_credentials"
+      oauthPassThru: true
+      proxy_type: "env"
+      unsecuredQueryHandling: "allow"
+    readOnly: true
+    apiVersion: ""

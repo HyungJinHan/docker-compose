@@ -1,18 +1,18 @@
 apiVersion: 1
 
 datasources:
-  - id: 22
-    uid: "bb1b1082-6dee-4d90-9ec8-1cf29417935f"
+  - id: 5
+    uid: "fdyu8jot7j94wa"
     orgId: 1
-    name: "Weather"
+    name: "weather"
     type: "yesoreyeram-infinity-datasource"
-    url: "__IGNORE_URL__"
+    url: "https://api.openweathermap.org"
     basicAuth: false
     basicAuthUser: ""
     isDefault: false
     jsonData:
       allowedHosts:
-        - "https://api.openweathermap.org/data/2.5/weather"
+        - "https://api.openweathermap.org"
       apiKeyKey: "appid"
       apiKeyType: "query"
       auth_method: "apiKey"
@@ -21,5 +21,6 @@ datasources:
       global_queries: []
       oauthPassThru: false
     readOnly: false
+    apiVersion: ""
     secureJsonData:
-      apiKeyValue: $WEATHER_API_KEY
+      apiKeyValue: "25a0734bd9eb17d03b76077b5e21c09b"
