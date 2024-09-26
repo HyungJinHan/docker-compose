@@ -2,8 +2,8 @@
 
 services:
   grafana:
-    image: grafana/grafana-oss
-    container_name: grafana-compose-test
+    image: grafana/grafana-oss:latest
+    container_name: grafana-docker-container
     restart: unless-stopped
     environment:
       - GF_INSTALL_PLUGINS=marcusolsson-dynamictext-panel,volkovlabs-variable-panel,yesoreyeram-infinity-datasource,marcusolsson-json-datasource,grafana-clock-panel
@@ -16,11 +16,12 @@ services:
       - "./dashboards:/etc/grafana/provisioning/dashboards/"
       - "./dashboards:/var/lib/grafana/dashboards"
       # Setting Change
-      - ./grafana.ini:/etc/grafana/grafana.ini:ro
+      - ./grafana.ini:/etc/grafana/grafana.ini
       # Icon Change
-      - ./img/grafana_icon.svg:/usr/share/grafana/public/img/grafana_icon.svg:ro
+      - ./img/grafana_icon.svg:/usr/share/grafana/public/img/grafana_icon.svg
       # Favicon Change
-      - ./img/fav32.png:/usr/share/grafana/public/img/fav32.png:ro
+      - ./img/fav32.png:/usr/share/grafana/public/img/fav32.png
+      # :ro -> 읽기 전용
 
 volumes:
   storage: {}

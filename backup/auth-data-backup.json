@@ -18,9 +18,9 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 2,
-  "id": 10,
+  "id": 6,
   "links": [],
-  "liveNow": true,
+  "liveNow": false,
   "panels": [
     {
       "gridPos": {
@@ -248,8 +248,8 @@
       "id": 7,
       "interval": "1h",
       "options": {
-        "afterRender": "const openstreetmapLayer = \"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"; // openstreetmap (Default)\nconst googleMapLayer = \"https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}\"; // Google Map (Satellite)\nconst mapAttribution = 'Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors';\n\nconst pointToLayer = (feature, latlng) => {\n  const device = context.data[0].map((res) => (res));\n  const filter = device.find((res) => JSON.parse(res.location).geometry.coordinates[0] === feature.geometry.coordinates[0] && JSON.parse(res.location).geometry.coordinates[1] === feature.geometry.coordinates[1])\n  let customIcon;\n\n  if (filter.connection) {\n    customIcon = new L.Icon({\n      iconUrl: 'https://odn-grafana-image-bucket.s3.ap-northeast-2.amazonaws.com/marker/connected.png'\n    });\n  } else if (!filter.connection) {\n    customIcon = new L.Icon({\n      iconUrl: 'https://odn-grafana-image-bucket.s3.ap-northeast-2.amazonaws.com/marker/disconnected.png'\n    });\n  }\n\n  return L.marker(latlng, { icon: customIcon });\n}\n\nimport(\"https://esm.sh/leaflet\").then(({ default: L }) => {\n  /**\n   * Cleanup\n   */\n  // if (this.map) {\n  //   this.map.remove();\n  // }\n\n  let container = L.DomUtil.get(\"leaflet\");\n\n  if (!container || container._leaflet_id) {\n    return;\n  }\n\n  var map = L.map(\"leaflet\", {\n    scrollWheelZoom: false,\n    zoomControl: true,\n    dragging: true\n  }).fitBounds(context.data[0].map((res) => JSON.parse(res.location).geometry.coordinates.reverse()));\n\n  this.map = map;\n\n  L.tileLayer(openstreetmapLayer, {\n    attribution: mapAttribution,\n    maxZoom: 18,\n  }).addTo(map);\n\n  //if you want to use inline data\n  const geojson = context.data[0].map((res) => JSON.parse(res.location));\n\n  let geojsonLayer = L.geoJSON(geojson, {\n    pointToLayer: (feature, latlng) => pointToLayer(feature, latlng),\n  }).addTo(map);\n\n  geojsonLayer.bindPopup(function (data) {\n    const device = context.data[0].map((res) => (res));\n    const filter = device.find((res) => JSON.parse(res.location).geometry.coordinates[0] === data.feature.geometry.coordinates[0] && JSON.parse(res.location).geometry.coordinates[1] === data.feature.geometry.coordinates[1])\n    const device_id = filter.device_id\n\n    context.grafana.locationService.partial(\n      {\n        'var-Sensor': device_id,\n      },\n      true // replace: true tells Grafana to update the current URL state, rather than creating a new history entry.\n    );\n  })\n\n});",
-        "content": "<!-- <div class=\"weather-icon\">\n  <img src=\"https://openweathermap.org/img/wn/50d@2x.png\"/>\n</div> -->\n\n<div class=\"status\">\n  \n  <div class=\"status-icon\">\n    <span>Connected</span>\n    <img src=\"https://odn-grafana-image-bucket.s3.ap-northeast-2.amazonaws.com/marker/connected.png\"></img>\n  </div>\n\n  <div class=\"status-icon\">\n    <span>Disconnected</span>\n    <img src=\"https://odn-grafana-image-bucket.s3.ap-northeast-2.amazonaws.com/marker/disconnected.png\"></img>\n  </div>\n</div>\n\n<div id=\"leaflet\"></div>",
+        "afterRender": "const openstreetmapLayer = \"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"; // openstreetmap (Default)\nconst googleMapLayer = \"https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}\"; // Google Map (Satellite)\nconst mapAttribution = 'Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors';\n\nconst pointToLayer = (feature, latlng) => {\n  const device = context.data[0].map((res) => (res));\n  const filter = device.find((res) => JSON.parse(res.location).geometry.coordinates[0] === feature.geometry.coordinates[0] && JSON.parse(res.location).geometry.coordinates[1] === feature.geometry.coordinates[1])\n  let customIcon;\n\n  if (filter.connection) {\n    customIcon = new L.Icon({\n      iconUrl: 'https://odn-grafana-image-bucket.s3.ap-northeast-2.amazonaws.com/marker/connected.png'\n    });\n  } else if (!filter.connection) {\n    customIcon = new L.Icon({\n      iconUrl: 'https://odn-grafana-image-bucket.s3.ap-northeast-2.amazonaws.com/marker/disconnected.png'\n    });\n  }\n\n  return L.marker(latlng, { icon: customIcon });\n}\n\nimport(\"https://esm.sh/leaflet\").then(({ default: L }) => {\n  /**\n   * Cleanup\n   */\n  if (this.map) {\n    this.map.remove();\n  }\n\n  let container = L.DomUtil.get(\"leaflet\");\n\n  if (!container || container._leaflet_id) {\n    return;\n  }\n\n  var map = L.map(\"leaflet\", {\n    scrollWheelZoom: false,\n    zoomControl: true,\n    dragging: true\n  }).fitBounds(context.data[0].map((res) => JSON.parse(res.location).geometry.coordinates.reverse()));\n\n  this.map = map;\n\n  L.tileLayer(openstreetmapLayer, {\n    attribution: mapAttribution,\n    maxZoom: 18,\n  }).addTo(map);\n\n  //if you want to use inline data\n  const geojson = context.data[0].map((res) => JSON.parse(res.location));\n\n  let geojsonLayer = L.geoJSON(geojson, {\n    pointToLayer: (feature, latlng) => pointToLayer(feature, latlng),\n  }).addTo(map);\n\n  geojsonLayer.bindPopup(function (data) {\n    const device = context.data[0].map((res) => (res));\n    const filter = device.find((res) => JSON.parse(res.location).geometry.coordinates[0] === data.feature.geometry.coordinates[0] && JSON.parse(res.location).geometry.coordinates[1] === data.feature.geometry.coordinates[1])\n    const device_id = filter.device_id\n\n    context.grafana.locationService.partial(\n      {\n        'var-Sensor': device_id,\n      },\n      true // replace: true tells Grafana to update the current URL state, rather than creating a new history entry.\n    );\n  })\n\n});",
+        "content": "<!-- <div class=\"weather-icon\">\n  <img src=\"https://openweathermap.org/img/wn/50d@2x.png\"/>\n</div> -->\n\n<div id=\"leaflet\"></div>",
         "contentPartials": [],
         "defaultContent": "The query didn't return any results.",
         "editor": {
@@ -271,7 +271,7 @@
         ],
         "helpers": "",
         "renderMode": "data",
-        "styles": "#leaflet {\n  width: 100%;\n  height: ${Height};\n  border-radius: 10px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  align-self: center;\n}\n\n.status {\n  position: absolute;\n  // display: flex;\n  z-index: 999;\n  width: 150px;\n  // height: 20%;\n  left: 20px;\n  bottom: 20px;\n  background-color: rgba(0, 0, 0, 0.7);\n  border-radius: 10px;\n  // align-items: flex-end;\n  justify-content: space-around;\n  flex-direction: column;\n\n  > span {\n    font-weight: bold;\n    color: white;\n  }\n\n  @media screen and (max-width: 50rem) {\n    width: 25%;\n    height: 8%;\n\n    > span {\n      font-weight: bold;\n      color: white;\n      font-size: 12px;\n    }\n  }\n}\n\n.status-icon {\n  display: flex;\n  align-items: center;\n  margin: 5px 3px 5px 10px;\n  justify-content: space-between;\n\n  > span {\n    display: flex;\n  }\n\n  > img {\n    width: 35px;\n    display: flex;\n  }\n}\n",
+        "styles": "#leaflet {\n  width: 100%;\n  height: ${Height}px;\n  border-radius: 10px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  align-self: center;\n}\n\n.weather-icon {\n  position: absolute;\n  z-index: 999;\n  width: 8%;\n  right: 20px;\n  top: 20px;\n  background-color: rgba(0, 0, 0, 0.5);\n  border-radius: 10px;\n  // right: 0;\n}\n\na {\n  :hover {\n    text-decoration: underline;\n  }\n}",
         "wrap": true
       },
       "pluginVersion": "5.4.0",
@@ -295,6 +295,43 @@
           "url_options": {
             "data": "",
             "method": "GET"
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "weather",
+              "text": "weather",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "fdyu8jot7j94wa"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "parser": "backend",
+          "refId": "weather",
+          "root_selector": "$map($, function($v){\n   {\n    \"weather\": 'https://openweathermap.org/img/wn/' & $v.weather[0].icon & '@2x.png'\n}\n})",
+          "source": "url",
+          "type": "json",
+          "url": "/data/2.5/weather",
+          "url_options": {
+            "data": "",
+            "method": "GET",
+            "params": [
+              {
+                "key": "lat",
+                "value": "${Lat}"
+              },
+              {
+                "key": "lon",
+                "value": "${Lon}"
+              }
+            ]
           }
         }
       ],
@@ -697,8 +734,8 @@
       {
         "current": {
           "selected": false,
-          "text": "34.7327766418457",
-          "value": "34.7327766418457"
+          "text": "34.73290252685547",
+          "value": "34.73290252685547"
         },
         "datasource": {
           "type": "yesoreyeram-infinity-datasource",
@@ -739,8 +776,8 @@
       {
         "current": {
           "selected": false,
-          "text": "127.67237854003906",
-          "value": "127.67237854003906"
+          "text": "127.6723403930664",
+          "value": "127.6723403930664"
         },
         "datasource": {
           "type": "yesoreyeram-infinity-datasource",
@@ -781,21 +818,21 @@
       {
         "current": {
           "selected": false,
-          "text": "78vh",
-          "value": "78vh"
+          "text": "1035",
+          "value": "1035"
         },
-        "description": "Default : 1035px",
         "hide": 0,
         "label": "지도 높이",
         "name": "Height",
+        "description": "Default : 1035",
         "options": [
           {
             "selected": true,
-            "text": "78vh",
-            "value": "78vh"
+            "text": "1035",
+            "value": "1035"
           }
         ],
-        "query": "78vh",
+        "query": "1035",
         "skipUrlSync": false,
         "type": "textbox"
       }
@@ -809,6 +846,6 @@
   "timezone": "",
   "title": "Auth Data 대시보드 프로비저닝",
   "uid": "d8aa395d-fdbb-4bcc-9c84-provisioning",
-  "version": 9,
+  "version": 1,
   "weekStart": ""
 }
