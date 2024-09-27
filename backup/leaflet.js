@@ -16,11 +16,17 @@ const pointToLayer = (feature, latlng) => {
 
   if (filter.connection) {
     customIcon = new L.Icon({
+      iconSize: [41, 41],
+      iconAnchor: [20, 41],
+      popupAnchor: [0, -35],
       iconUrl:
         "https://odn-grafana-image-bucket.s3.ap-northeast-2.amazonaws.com/marker/connected.png",
     });
   } else if (!filter.connection) {
     customIcon = new L.Icon({
+      iconSize: [41, 41],
+      iconAnchor: [20, 41],
+      popupAnchor: [0, -35],
       iconUrl:
         "https://odn-grafana-image-bucket.s3.ap-northeast-2.amazonaws.com/marker/disconnected.png",
     });
@@ -29,60 +35,106 @@ const pointToLayer = (feature, latlng) => {
   return L.marker(latlng, { icon: customIcon });
 };
 
-import("https://esm.sh/leaflet").then(({ default: L }) => {
-  /**
-   * Cleanup
-   */
-  if (this.map) {
-    this.map.remove();
-  }
+import("https://esm.sh/leaflet").then(async ({ default: L }) => {
+  await import("https://esm.sh/leaflet.markercluster.esm")
+    .then(({ markerClusterGroup }) => {
+      /**
+       * markerCluster
+       */
+      // var cluster = markerClusterGroup({
+      //   iconCreateFunction(cluster) {
+      //     return createDivIcon({
+      //       iconAnchor: [28, 28],
+      //       iconSize: [56, 56],
+      //       html: cluster.getChildCount(),
+      //     });
+      //   },
+      // })
 
-  let container = L.DomUtil.get("leaflet");
+      /**
+       * Cleanup
+       */
+      if (this.map) {
+        this.map.remove();
+      }
 
-  if (!container || container._leaflet_id) {
-    return;
-  }
+      // let container = L.DomUtil.get("leaflet");
 
-  var map = L.map("leaflet", {
-    scrollWheelZoom: false,
-    zoomControl: true,
-    dragging: true,
-  }).fitBounds(
-    context.data[0].map((res) =>
-      JSON.parse(res.location).geometry.coordinates.reverse()
-    )
-  );
+      // if (!container || container._leaflet_id) {
+      //   return;
+      // }
 
-  this.map = map;
+      var map = L.map("leaflet", {
+        scrollWheelZoom: true,
+        // gestureHandling: true,
+        zoomControl: true,
+        dragging: true,
+      }).fitBounds(
+        context.data[0].map((res) =>
+          JSON.parse(res.location).geometry.coordinates.reverse()
+        )
+      );
 
-  L.tileLayer(openstreetmapLayer, {
-    attribution: mapAttribution,
-    maxZoom: 18,
-  }).addTo(map);
+      this.map = map;
 
-  //if you want to use inline data
-  const geojson = context.data[0].map((res) => JSON.parse(res.location));
+      L.tileLayer(openstreetmapLayer, {
+        attribution: mapAttribution,
+        maxZoom: 18,
+      }).addTo(map);
 
-  let geojsonLayer = L.geoJSON(geojson, {
-    pointToLayer: (feature, latlng) => pointToLayer(feature, latlng),
-  }).addTo(map);
+      //if you want to use inline data
+      const geojson = context.data[0].map((res) => JSON.parse(res.location));
 
-  geojsonLayer.bindPopup(function (data) {
-    const device = context.data[0].map((res) => res);
-    const filter = device.find(
-      (res) =>
-        JSON.parse(res.location).geometry.coordinates[0] ===
-          data.feature.geometry.coordinates[0] &&
-        JSON.parse(res.location).geometry.coordinates[1] ===
-          data.feature.geometry.coordinates[1]
-    );
-    const device_id = filter.device_id;
+      let geojsonLayer = L.geoJSON(geojson, {
+        pointToLayer: (feature, latlng) => pointToLayer(feature, latlng),
+      }).addTo(map);
 
-    context.grafana.locationService.partial(
-      {
-        "var-Sensor": device_id,
-      },
-      true // replace: true tells Grafana to update the current URL state, rather than creating a new history entry.
-    );
-  });
+      /**
+       * markerCluster
+       */
+      // for (let i = 0; i < geojson.length; i++) {
+      //   const feature = geojson[i];
+      //   const marker = L.marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]); // new L.LatLng(a[0], a[1])
+      //   console.log(marker)
+      //   // marker.bindPopup(`${title}`);
+
+      //   cluster.addLayer(marker);
+      // }
+
+      // map.addLayer(cluster); // -> markerCluster 주석
+
+      geojsonLayer.bindPopup(function (data) {
+        const device = context.data[0].map((res) => res);
+        const filter = device.find(
+          (res) =>
+            JSON.parse(res.location).geometry.coordinates[0] ===
+              data.feature.geometry.coordinates[0] &&
+            JSON.parse(res.location).geometry.coordinates[1] ===
+              data.feature.geometry.coordinates[1]
+        );
+        const device_id = filter.device_id
+          ? filter.device_id
+          : filter.device_name;
+
+        context.grafana.locationService.partial(
+          {
+            "var-Sensor": device_id,
+          },
+          true // replace: true tells Grafana to update the current URL state, rather than creating a new history entry.
+        );
+
+        data.bindPopup(device_id);
+        data.openPopup();
+
+        // data.on("mouseover", function () {
+        //   data.bindPopup(device_id);
+        //   data.openPopup();
+        // })
+
+        // data.on("mouseout", function () {
+        //   data.closePopup();
+        // })
+      });
+    })
+    .catch((err) => console.log(err.message));
 });
