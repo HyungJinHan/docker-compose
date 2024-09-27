@@ -10,7 +10,7 @@ services:
       # - GF_AUTH_URL = http://localhost:3000
     ports:
       - "3001:3001"
-    volumes:
+    volumes: # :ro -> 읽기 전용
       - "storage:/var/lib/grafana"
       - "./datasources:/etc/grafana/provisioning/datasources/"
       - "./dashboards:/etc/grafana/provisioning/dashboards/"
@@ -21,7 +21,6 @@ services:
       - ./img/grafana_icon.svg:/usr/share/grafana/public/img/grafana_icon.svg
       # Favicon Change
       - ./img/fav32.png:/usr/share/grafana/public/img/fav32.png
-      # :ro -> 읽기 전용
 
 volumes:
   storage: {}
