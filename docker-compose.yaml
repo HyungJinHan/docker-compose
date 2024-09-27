@@ -6,7 +6,7 @@ services:
     container_name: grafana-docker-container
     restart: unless-stopped
     environment:
-      - GF_INSTALL_PLUGINS=marcusolsson-dynamictext-panel,volkovlabs-variable-panel,yesoreyeram-infinity-datasource,marcusolsson-json-datasource,grafana-clock-panel
+      - GF_INSTALL_PLUGINS=marcusolsson-dynamictext-panel,volkovlabs-variable-panel,yesoreyeram-infinity-datasource,marcusolsson-json-datasource,grafana-clock-panel,volkovlabs-echarts-panel
       # - GF_AUTH_URL = http://localhost:3000
     ports:
       - "3001:3001"
