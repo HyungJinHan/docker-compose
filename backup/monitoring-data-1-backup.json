@@ -23,20 +23,6 @@
   "liveNow": true,
   "panels": [
     {
-      "gridPos": {
-        "h": 3,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 9,
-      "libraryPanel": {
-        "name": "Weather Panel",
-        "uid": "adyuhikvsm2v4b"
-      },
-      "title": ""
-    },
-    {
       "datasource": {
         "default": true,
         "type": "yesoreyeram-infinity-datasource",
@@ -49,7 +35,7 @@
             "mode": "thresholds"
           },
           "custom": {
-            "align": "auto",
+            "align": "left",
             "cellOptions": {
               "type": "auto",
               "wrapText": true
@@ -75,13 +61,86 @@
           },
           "unit": "none"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "수온 측정값"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "celsius"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "용존산소 측정값"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "mg/L"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "수소이온농도 측정값"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "pH"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "염도 측정값"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "g/Kg"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "전기전도도 측정값"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "µS/cm"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "총용존고형물 측정값"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "ppm"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 22,
-        "w": 6,
+        "h": 25,
+        "w": 4,
         "x": 0,
-        "y": 3
+        "y": 0
       },
       "id": 14,
       "options": {
@@ -116,11 +175,6 @@
               "selector": "value",
               "text": "측정값",
               "type": "number"
-            },
-            {
-              "selector": "unit",
-              "text": "단위",
-              "type": "string"
             }
           ],
           "computed_columns": [],
@@ -165,7 +219,7 @@
           ],
           "parser": "simple",
           "queryParams": "",
-          "refId": "temperatures",
+          "refId": "수온",
           "root_selector": "",
           "source": "url",
           "type": "json",
@@ -207,11 +261,6 @@
               "selector": "value",
               "text": "측정값",
               "type": "number"
-            },
-            {
-              "selector": "unit",
-              "text": "단위",
-              "type": "string"
             }
           ],
           "computed_columns": [],
@@ -256,7 +305,7 @@
           ],
           "parser": "simple",
           "queryParams": "",
-          "refId": "oxygens",
+          "refId": "용존산소",
           "root_selector": "",
           "source": "url",
           "type": "json",
@@ -298,11 +347,6 @@
               "selector": "value",
               "text": "측정값",
               "type": "number"
-            },
-            {
-              "selector": "unit",
-              "text": "단위",
-              "type": "string"
             }
           ],
           "computed_columns": [],
@@ -347,7 +391,7 @@
           ],
           "parser": "simple",
           "queryParams": "",
-          "refId": "phs",
+          "refId": "수소이온농도",
           "root_selector": "",
           "source": "url",
           "type": "json",
@@ -389,11 +433,6 @@
               "selector": "value",
               "text": "측정값",
               "type": "number"
-            },
-            {
-              "selector": "unit",
-              "text": "단위",
-              "type": "string"
             }
           ],
           "computed_columns": [],
@@ -438,7 +477,7 @@
           ],
           "parser": "simple",
           "queryParams": "",
-          "refId": "salinities",
+          "refId": "염도",
           "root_selector": "",
           "source": "url",
           "type": "json",
@@ -480,11 +519,6 @@
               "selector": "value",
               "text": "측정값",
               "type": "number"
-            },
-            {
-              "selector": "unit",
-              "text": "단위",
-              "type": "string"
             }
           ],
           "computed_columns": [],
@@ -514,7 +548,7 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "hide": true,
+          "hide": false,
           "json_options": {
             "columnar": false,
             "root_is_not_array": false
@@ -529,7 +563,7 @@
           ],
           "parser": "simple",
           "queryParams": "",
-          "refId": "conductivities",
+          "refId": "전기전도도",
           "root_selector": "",
           "source": "url",
           "type": "json",
@@ -571,11 +605,6 @@
               "selector": "value",
               "text": "측정값",
               "type": "number"
-            },
-            {
-              "selector": "unit",
-              "text": "단위",
-              "type": "string"
             }
           ],
           "computed_columns": [],
@@ -605,7 +634,7 @@
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "hide": true,
+          "hide": false,
           "json_options": {
             "columnar": false,
             "root_is_not_array": false
@@ -620,7 +649,7 @@
           ],
           "parser": "simple",
           "queryParams": "",
-          "refId": "tds",
+          "refId": "총용존고형물",
           "root_selector": "",
           "source": "url",
           "type": "json",
@@ -650,6 +679,103 @@
       "type": "table"
     },
     {
+      "gridPos": {
+        "h": 3,
+        "w": 17,
+        "x": 4,
+        "y": 0
+      },
+      "id": 9,
+      "libraryPanel": {
+        "name": "Weather Panel",
+        "uid": "adyuhikvsm2v4b"
+      },
+      "title": ""
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "noValue": "App Layout",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 25,
+        "w": 3,
+        "x": 21,
+        "y": 0
+      },
+      "id": 22,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "type": "timeseries"
+    },
+    {
       "datasource": {
         "default": false,
         "type": "datasource",
@@ -675,8 +801,8 @@
       },
       "gridPos": {
         "h": 22,
-        "w": 15,
-        "x": 6,
+        "w": 17,
+        "x": 4,
         "y": 3
       },
       "id": 7,
@@ -745,89 +871,6 @@
     },
     {
       "datasource": {
-        "default": false,
-        "type": "datasource",
-        "uid": "-- Mixed --"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "noValue": "App Layout",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 22,
-        "w": 3,
-        "x": 21,
-        "y": 3
-      },
-      "id": 22,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
         "default": true,
         "type": "yesoreyeram-infinity-datasource",
         "uid": "ddytvfy4bnaiof"
@@ -887,7 +930,7 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "celsius"
         },
         "overrides": []
       },
@@ -927,7 +970,7 @@
             },
             {
               "selector": "value",
-              "text": "\b측정값",
+              "text": "수온",
               "type": "number"
             },
             {
@@ -1069,7 +1112,7 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "mg/L"
         },
         "overrides": []
       },
@@ -1109,7 +1152,7 @@
             },
             {
               "selector": "value",
-              "text": "\b측정값",
+              "text": "용존산소",
               "type": "number"
             },
             {
@@ -1242,7 +1285,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1250,7 +1294,7 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "pH"
         },
         "overrides": []
       },
@@ -1290,7 +1334,7 @@
             },
             {
               "selector": "value",
-              "text": "\b측정값",
+              "text": "수소이온농도",
               "type": "number"
             },
             {
@@ -1423,7 +1467,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1431,7 +1476,7 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "g/Kg"
         },
         "overrides": []
       },
@@ -1471,7 +1516,7 @@
             },
             {
               "selector": "value",
-              "text": "\b측정값",
+              "text": "\b염도",
               "type": "number"
             },
             {
@@ -2432,11 +2477,11 @@
           },
           {
             "selected": false,
-            "text": "총용존 고형물",
+            "text": "총용존고형물",
             "value": "tds"
           }
         ],
-        "query": "수온 : temperatures, 용존산소 : oxygens, 수소이온농도 : phs, 염도 : salinities, 전기전도도 : conductivities, 총용존 고형물 : tds",
+        "query": "수온 : temperatures, 용존산소 : oxygens, 수소이온농도 : phs, 염도 : salinities, 전기전도도 : conductivities, 총용존고형물 : tds",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
@@ -2444,8 +2489,8 @@
       {
         "current": {
           "selected": false,
-          "text": "34.7327880859375",
-          "value": "34.7327880859375"
+          "text": "34.73292541503906",
+          "value": "34.73292541503906"
         },
         "datasource": {
           "type": "yesoreyeram-infinity-datasource",
@@ -2486,8 +2531,8 @@
       {
         "current": {
           "selected": false,
-          "text": "127.67236328125",
-          "value": "127.67236328125"
+          "text": "127.67240142822266",
+          "value": "127.67240142822266"
         },
         "datasource": {
           "type": "yesoreyeram-infinity-datasource",
@@ -2556,6 +2601,6 @@
   "timezone": "",
   "title": "Auth Data 대시보드 모니터링 레이아웃 1",
   "uid": "d8aa395d-fdbb-4bcc-9c84-layout-1",
-  "version": 175,
+  "version": 191,
   "weekStart": ""
 }
