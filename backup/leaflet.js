@@ -154,3 +154,20 @@ import("https://esm.sh/leaflet").then(async ({ default: L }) => {
 // battery.voltage.unit | value - V
 // load.unit | value - W
 // soc.unit | value - %
+
+// const shadowValue = {
+//   geometry: {
+//     coordinates: [127.67240142822266, 34.7328109741211],
+//     type: "Point",
+//   },
+//   properties: {
+//     conductivity: { unit: "µS/cm", value: 41911.875 },
+//     oxygen: { unit: "mg/L", value: 4.804198265075684 },
+//     ph: { unit: "pH", value: 7.98469638824463 },
+//     redox: { unit: "mV", value: -349.25531005859375 },
+//     salinity: { unit: "g/Kg", value: 26.881053924560547 },
+//     tds: { unit: "ppm", value: 27330.734375 },
+//     temperature: { unit: "°C", value: 26.659635543823242 },
+//   },
+//   type: "Feature",
+// };
