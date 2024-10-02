@@ -138,3 +138,19 @@ import("https://esm.sh/leaflet").then(async ({ default: L }) => {
     })
     .catch((err) => console.log(err.message));
 });
+
+// ph
+// salinity
+// tds
+// temperature
+
+// 용존산소 mg/L
+// 수소이온농도 pH
+// 염도 g/Kg
+// 전기전도도 µS/cm
+// 총용존고형물 ppm
+
+// battery.power.unit | value - W
+// battery.voltage.unit | value - V
+// load.unit | value - W
+// soc.unit | value - %
