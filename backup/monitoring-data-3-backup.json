@@ -437,7 +437,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#818181",
+                  "fixedColor": "#797979",
                   "mode": "fixed"
                 }
               },
@@ -460,7 +460,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#818181",
+                  "fixedColor": "#797979",
                   "mode": "fixed"
                 }
               }
@@ -630,6 +630,14 @@
               },
               {
                 "id": "decimals"
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 100
               }
             ]
           },
@@ -705,8 +713,12 @@
                       "value": null
                     },
                     {
-                      "color": "green",
+                      "color": "#797979",
                       "value": 0
+                    },
+                    {
+                      "color": "green",
+                      "value": 0.01
                     }
                   ]
                 }
@@ -1686,8 +1698,8 @@
       {
         "current": {
           "selected": false,
-          "text": "34.73283004760742",
-          "value": "34.73283004760742"
+          "text": "34.7328224182129",
+          "value": "34.7328224182129"
         },
         "datasource": {
           "type": "yesoreyeram-infinity-datasource",
@@ -1728,8 +1740,8 @@
       {
         "current": {
           "selected": false,
-          "text": "127.67231750488281",
-          "value": "127.67231750488281"
+          "text": "127.67236328125",
+          "value": "127.67236328125"
         },
         "datasource": {
           "type": "yesoreyeram-infinity-datasource",
@@ -1798,6 +1810,6 @@
   "timezone": "",
   "title": "Auth Data 대시보드 모니터링 레이아웃 3",
   "uid": "d8aa395d-fdbb-4bcc-9c84-layout-3",
-  "version": 275,
+  "version": 278,
   "weekStart": ""
 }
